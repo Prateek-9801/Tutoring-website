@@ -1,3 +1,5 @@
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 document.addEventListener('DOMContentLoaded', () => {
 
     /* --- Mobile Menu Toggle --- */
@@ -46,17 +48,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* --- Feedback Form Handling --- */
+    /* --- Feedback Form Handling --- */
     const feedbackForm = document.getElementById('feedback-form');
     if (feedbackForm) {
-        feedbackForm.addEventListener('submit', (e) => {
+        feedbackForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // Get values (in a real app, send these to a backend)
-            const name = document.getElementById('parent-name').value;
-            const message = document.getElementById('feedback-text').value;
 
-            if (name && message) {
-                alert(`Thank you, ${name}! Your feedback has been submitted for review.`);
-                feedbackForm.reset(); // Clear the form
+            const nameInput = document.getElementById('parent-name');
+            const classInput = document.getElementById('class-subject');
+            const messageInput = document.getElementById('feedback-text');
+
+            const name = nameInput.value.trim();
+            const classSubject = classInput ? classInput.value.trim() : '';
+            const message = messageInput.value.trim();
+
+            if (!name || !message) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            const submitBtn = feedbackForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Check if window.db (Firestore) is available per instructions
+                if (!window.db) {
+                    console.error("Firestore instance (window.db) not found. Check index.html initialization.");
+                    throw new Error("Service unavailable.");
+                }
+
+                await addDoc(collection(window.db, "feedbacks"), {
+                    name: name,
+                    classSubject: classSubject,
+                    message: message,
+                    approved: false,
+                    createdAt: serverTimestamp()
+                });
+
+                alert("Thank you! Your feedback has been submitted for review.");
+                feedbackForm.reset();
+
+            } catch (error) {
+                console.error("Error adding feedback: ", error);
+                alert("Something went wrong. Please try again later.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
             }
         });
     }
