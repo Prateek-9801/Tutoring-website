@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* --- Feedback Form Handling --- */
-    /* --- Feedback Form Handling --- */
     const feedbackForm = document.getElementById('feedback-form');
     if (feedbackForm) {
         feedbackForm.addEventListener('submit', async (e) => {
