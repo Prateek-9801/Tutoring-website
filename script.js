@@ -106,18 +106,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container || !window.db) return;
 
         try {
+            // Query only by approved status to avoid index issues with orderBy
             const q = query(
                 collection(window.db, "feedbacks"),
-                where("approved", "==", true),
-                orderBy("createdAt", "desc")
+                where("approved", "==", true)
             );
 
             const querySnapshot = await getDocs(q);
 
             if (!querySnapshot.empty) {
                 container.innerHTML = ''; // Clear static placeholders
+
+                // Convert to array and sort client-side
+                const testimonials = [];
                 querySnapshot.forEach((doc) => {
-                    const data = doc.data();
+                    testimonials.push(doc.data());
+                });
+
+                // Sort by createdAt desc (handle nulls safely)
+                testimonials.sort((a, b) => {
+                    const timeA = a.createdAt ? a.createdAt.toMillis() : 0;
+                    const timeB = b.createdAt ? b.createdAt.toMillis() : 0;
+                    return timeB - timeA;
+                });
+
+                testimonials.forEach((data) => {
                     const card = document.createElement('div');
                     card.className = 'testimonial-card';
                     card.innerHTML = `
