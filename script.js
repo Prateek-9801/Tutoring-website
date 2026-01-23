@@ -1,4 +1,4 @@
-import { collection, addDoc, serverTimestamp }
+import { collection, addDoc, serverTimestamp, query, where, orderBy, getDocs }
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -99,6 +99,56 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    /* --- Load Testimonials --- */
+    async function loadTestimonials() {
+        const container = document.getElementById('testimonials-grid');
+        if (!container || !window.db) return;
+
+        try {
+            const q = query(
+                collection(window.db, "feedbacks"),
+                where("approved", "==", true),
+                orderBy("createdAt", "desc")
+            );
+
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                container.innerHTML = ''; // Clear static placeholders
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const card = document.createElement('div');
+                    card.className = 'testimonial-card';
+                    card.innerHTML = `
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"${escapeHtml(data.message)}"</p>
+                        <div class="testimonial-author">
+                            <h4>${escapeHtml(data.name)}</h4>
+                            <span>${escapeHtml(data.classSubject || 'Student')}</span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        } catch (error) {
+            console.error("Error loading testimonials:", error);
+        }
+    }
+
+    // specific helper to prevent XSS
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    // Call function
+    loadTestimonials();
 
     console.log("Website upgraded and ready!");
 });
