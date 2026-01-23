@@ -45,5 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* --- Feedback Form Handling --- */
+    const feedbackForm = document.getElementById('feedback-form');
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Get values (in a real app, send these to a backend)
+            const name = document.getElementById('parent-name').value;
+            const message = document.getElementById('feedback-text').value;
+
+            if (name && message) {
+                alert(`Thank you, ${name}! Your feedback has been submitted for review.`);
+                feedbackForm.reset(); // Clear the form
+            }
+        });
+    }
+
     console.log("Website upgraded and ready!");
 });
