@@ -14,6 +14,19 @@
     --nav-height: 70px;
 }
 
+body.dark-mode {
+    --text-dark: #f7fafc;
+    --text-light: #cbd5e0;
+    --white: #1a202c;
+    /* Main dark bg */
+    --bg-light: #2d3748;
+    /* Lighter dark for cards/sections */
+    --primary-color: #63b3ed;
+    /* Lighter blue for dark mode visibility */
+    --secondary-color: #4299e1;
+    --text-heading: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -30,7 +43,9 @@ body {
     color: var(--text-dark);
     background-color: var(--white);
     padding-top: var(--nav-height);
+    padding-top: var(--nav-height);
     /* Offset for fixed header */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -144,6 +159,24 @@ ul {
     border: none;
 }
 
+/* Theme Toggle Button */
+.theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    padding: 5px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.theme-btn:hover {
+    color: var(--accent-color);
+    transform: rotate(15deg);
+}
+
 .btn-primary {
     background-color: var(--accent-color);
     color: var(--text-dark);
@@ -180,6 +213,80 @@ ul {
 
 .bg-light {
     background-color: var(--bg-light);
+}
+
+/* --- Dark Mode Overrides --- */
+body.dark-mode .navbar {
+    background-color: var(--white);
+    border-bottom: 1px solid #2d3748;
+}
+
+body.dark-mode .card,
+body.dark-mode .testimonial-card,
+body.dark-mode .feedback-form-wrapper {
+    background-color: var(--white);
+    /* Cards pop against bg-light (which is 2d3748) or vice versa? 
+                                       Actually standard logic: 
+                                       Body bg = white (#1a202c)
+                                       Bg-light sect = bg-light (#2d3748)
+                                       Card in Bg-light sect = white (#1a202c)? No that would blend.
+                                       Let's invert logic:
+                                       Body (white) -> Dark (#1a202c)
+                                       Section (bg-light) -> Lighter Dark (#2d3748)
+                                       Card (white) -> Lighter Dark (#2d3748) IF on Body, or Darkest on Lighter? 
+                                       
+                                       Let's stick to simple:
+                                       Cards should be 'elevated' (lighter in dark mode usually).
+                                       var(--white) is now #1a202c (Dark). 
+                                       var(--bg-light) is now #2d3748 (Lighter Dark).
+                                       
+                                       Standard Card: background: var(--white) -> #1a202c.
+                                       Projects Section: background: var(--bg-light) -> #2d3748.
+                                       Card in Projects: #1a202c on #2d3748. (Dark on Light-Dark). This is OK but maybe inverted preference.
+                                       Let's override specifically for better depth.
+                                     */
+    background-color: #2d3748;
+    /* Make cards lighter than main bg */
+}
+
+body.dark-mode .bg-light {
+    background-color: #171923;
+    /* Make "light" sections darker than main bg for contrast, or keep as var? 
+                                  Let's use a specific dark tone */
+    background-color: #1a202c;
+    /* Same as main bg? */
+}
+
+
+
+body.dark-mode .bg-light {
+    background-color: #2d3748;
+}
+
+/* Revert cards to be elevated */
+body.dark-mode .card,
+body.dark-mode .testimonial-card,
+body.dark-mode .feedback-form-wrapper {
+    background-color: #4a5568;
+    /* Lighter than everything */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .feedback-form-wrapper {
+    border-color: #4a5568;
+}
+
+/* Input Fields in Dark Mode */
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #2d3748;
+    color: #f7fafc;
+    border-color: #4a5568;
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus {
+    border-color: var(--accent-color);
 }
 
 /* --- Cards (Subjects & Projects) --- */
