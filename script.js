@@ -48,6 +48,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* --- Star Rating Handling --- */
+    const starContainer = document.getElementById('star-rating-input');
+    const ratingInput = document.getElementById('rating-value');
+
+    if (starContainer && ratingInput) {
+        const stars = starContainer.querySelectorAll('i');
+
+        // Handle click
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = star.getAttribute('data-value');
+                ratingInput.value = value;
+                updateStarVisuals(value);
+            });
+
+            // Handle hover
+            star.addEventListener('mouseover', () => {
+                updateStarVisuals(star.getAttribute('data-value'), true);
+            });
+        });
+
+        // Reset to selected value on mouse leave
+        starContainer.addEventListener('mouseleave', () => {
+            updateStarVisuals(ratingInput.value, false);
+        });
+
+        function updateStarVisuals(value, isHover) {
+            if (!value && !isHover) value = 0; // ensure reset if nothing selected
+            stars.forEach(s => {
+                const sVal = parseInt(s.getAttribute('data-value'));
+                s.classList.remove('active', 'hover');
+                if (sVal <= value) {
+                    s.classList.add(isHover ? 'hover' : 'active');
+                }
+            });
+        }
+    }
+
     /* --- Feedback Form Handling --- */
     const feedbackForm = document.getElementById('feedback-form');
     if (feedbackForm) {
@@ -61,9 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = nameInput.value.trim();
             const classSubject = classInput ? classInput.value.trim() : '';
             const message = messageInput.value.trim();
+            const rating = ratingInput ? parseInt(ratingInput.value) : 0;
 
-            if (!name || !message) {
-                alert("Please fill in all required fields.");
+            if (!name || !message || !rating) {
+                alert("Please fill in all required fields, including the rating.");
                 return;
             }
 
@@ -83,12 +122,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     name: name,
                     classSubject: classSubject,
                     message: message,
+                    rating: rating,
                     approved: false,
                     createdAt: serverTimestamp()
                 });
 
                 alert("Thank you! Your feedback has been submitted for review.");
                 feedbackForm.reset();
+                // Reset stars
+                if (ratingInput) ratingInput.value = '';
+                if (starContainer) {
+                    const stars = starContainer.querySelectorAll('i');
+                    stars.forEach(s => s.classList.remove('active', 'hover'));
+                }
 
             } catch (error) {
                 console.error("Error adding feedback: ", error);
@@ -133,8 +179,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 testimonials.forEach((data) => {
                     const card = document.createElement('div');
                     card.className = 'testimonial-card';
+
+                    // Generate Star Rating HTML
+                    let starsHtml = '';
+                    if (data.rating) {
+                        starsHtml = '<div class="testimonial-rating">';
+                        for (let i = 1; i <= 5; i++) {
+                            if (i <= data.rating) {
+                                starsHtml += '<i class="fas fa-star"></i>';
+                            } else {
+                                starsHtml += '<i class="fas fa-star" style="color: #e2e8f0;"></i>';
+                            }
+                        }
+                        starsHtml += '</div>';
+                    }
+
                     card.innerHTML = `
                         <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        ${starsHtml}
                         <p class="testimonial-text">"${escapeHtml(data.message)}"</p>
                         <div class="testimonial-author">
                             <h4>${escapeHtml(data.name)}</h4>

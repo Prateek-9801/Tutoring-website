@@ -327,6 +327,45 @@ ul {
     resize: vertical;
 }
 
+/* --- Star Rating (New) --- */
+.rating-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.rating-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.star-rating {
+    display: flex;
+    gap: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.star-rating i {
+    color: #e2e8f0;
+    /* Default empty color */
+    transition: color 0.2s ease;
+}
+
+.star-rating i.active,
+.star-rating i.hover {
+    color: #f6ad55;
+    /* Match accent color but verify variable usage */
+    color: var(--accent-color);
+}
+
+.testimonial-rating {
+    margin-bottom: 10px;
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
 /* --- Contact --- */
 .contact-info {
     display: flex;
