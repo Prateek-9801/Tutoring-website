@@ -1,589 +1,606 @@
 /* --- Variables & Reset --- */
 :root {
-    --primary-color: #2b6cb0;
-    --secondary-color: #2c5282;
-    --accent-color: #f6ad55;
-    --text-dark: #333333;
-    --text-light: #666666;
-    --white: #ffffff;
-    --bg-light: #f7fafc;
-    --success: #25d366;
-    /* WhatsApp Green */
-    --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Open Sans', sans-serif;
-    --nav-height: 70px;
+  --primary-color: #2b6cb0;
+  --secondary-color: #2c5282;
+  --accent-color: #f6ad55;
+  --text-dark: #333;
+  --text-light: #666;
+  --white: #fff;
+  --bg-light: #f7fafc;
+  --success: #25d366;
+
+  /* WhatsApp Green */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+  --nav-height: 70px;
 }
 
 body.dark-mode {
-    --text-dark: #f7fafc;
-    --text-light: #cbd5e0;
-    --white: #1a202c;
-    /* Main dark bg */
-    --bg-light: #2d3748;
-    /* Lighter dark for cards/sections */
-    --primary-color: #63b3ed;
-    /* Lighter blue for dark mode visibility */
-    --secondary-color: #4299e1;
-    --text-heading: #ffffff;
+  --text-dark: #f7fafc;
+  --text-light: #cbd5e0;
+  --white: #1a202c;
+
+  /* Main dark bg */
+  --bg-light: #2d3748;
+
+  /* Lighter dark for cards/sections */
+  --primary-color: #63b3ed;
+
+  /* Lighter blue for dark mode visibility */
+  --secondary-color: #4299e1;
+  --text-heading: #fff;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: var(--font-body);
-    line-height: 1.6;
-    color: var(--text-dark);
-    background-color: var(--white);
-    padding-top: var(--nav-height);
-    padding-top: var(--nav-height);
-    /* Offset for fixed header */
-    transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--white);
+  padding-top: var(--nav-height);
+
+  /* Offset for fixed header */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    transition: 0.3s;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* --- Navigation --- */
 .navbar {
-    background-color: var(--white);
-    height: var(--nav-height);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  height: var(--nav-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
 }
 
 .nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .nav-link {
-    font-weight: 600;
-    color: var(--text-dark);
-    font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 1rem;
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 /* Hamburger Menu */
 .menu-toggle {
-    display: none;
-    cursor: pointer;
+  display: none;
+  cursor: pointer;
 }
 
 .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    transition: all 0.3s ease-in-out;
-    background-color: var(--text-dark);
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--text-dark);
 }
 
 /* --- Hero Section --- */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    height: 80vh;
-    /* Take up most of the viewport */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  height: 80vh;
+
+  /* Take up most of the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
 }
 
 .hero h1 {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    margin-bottom: 20px;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    opacity: 0.9;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
 }
 
 .btn {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
 }
 
 /* Theme Toggle Button */
 .theme-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: var(--text-dark);
-    padding: 5px;
-    transition: transform 0.3s ease, color 0.3s ease;
-    display: flex;
-    align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  padding: 5px;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
 .theme-btn:hover {
-    color: var(--accent-color);
-    transform: rotate(15deg);
+  color: var(--accent-color);
+  transform: rotate(15deg);
 }
 
 .btn-primary {
-    background-color: var(--accent-color);
-    color: var(--text-dark);
+  background-color: var(--accent-color);
+  color: var(--text-dark);
 }
 
 .btn-primary:hover {
-    background-color: #dd9643;
-    transform: translateY(-2px);
+  background-color: #dd9643;
+  transform: translateY(-2px);
 }
 
 /* --- General Section Styles --- */
 .section {
-    padding: 80px 0;
+  padding: 80px 0;
 }
 
 .section-title {
-    text-align: center;
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 50px;
-    position: relative;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 50px;
+  position: relative;
 }
 
 .section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background-color: var(--accent-color);
-    margin: 10px auto 0;
-    border-radius: 2px;
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--accent-color);
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 .bg-light {
-    background-color: var(--bg-light);
+  background-color: var(--bg-light);
 }
 
 /* --- Dark Mode Overrides --- */
 body.dark-mode .navbar {
-    background-color: var(--white);
-    border-bottom: 1px solid #2d3748;
+  background-color: var(--white);
+  border-bottom: 1px solid #2d3748;
 }
 
 body.dark-mode .card,
 body.dark-mode .testimonial-card,
 body.dark-mode .feedback-form-wrapper {
-    background-color: var(--white);
-    /* Cards pop against bg-light (which is 2d3748) or vice versa? 
-                                       Actually standard logic: 
+  background-color: var(--white);
+
+  /* Cards pop against bg-light (which is 2d3748) or vice versa?
+                                       Actually standard logic:
                                        Body bg = white (#1a202c)
                                        Bg-light sect = bg-light (#2d3748)
                                        Card in Bg-light sect = white (#1a202c)? No that would blend.
                                        Let's invert logic:
                                        Body (white) -> Dark (#1a202c)
                                        Section (bg-light) -> Lighter Dark (#2d3748)
-                                       Card (white) -> Lighter Dark (#2d3748) IF on Body, or Darkest on Lighter? 
-                                       
+                                       Card (white) -> Lighter Dark (#2d3748) IF on Body, or Darkest on Lighter?
+
                                        Let's stick to simple:
                                        Cards should be 'elevated' (lighter in dark mode usually).
-                                       var(--white) is now #1a202c (Dark). 
+                                       var(--white) is now #1a202c (Dark).
                                        var(--bg-light) is now #2d3748 (Lighter Dark).
-                                       
+
                                        Standard Card: background: var(--white) -> #1a202c.
                                        Projects Section: background: var(--bg-light) -> #2d3748.
                                        Card in Projects: #1a202c on #2d3748. (Dark on Light-Dark). This is OK but maybe inverted preference.
                                        Let's override specifically for better depth.
                                      */
-    background-color: #2d3748;
-    /* Make cards lighter than main bg */
+  background-color: #2d3748;
+
+  /* Make cards lighter than main bg */
 }
 
 body.dark-mode .bg-light {
-    background-color: #171923;
-    /* Make "light" sections darker than main bg for contrast, or keep as var? 
+  /* Make "light" sections darker than main bg for contrast, or keep as var?
                                   Let's use a specific dark tone */
-    background-color: #1a202c;
-    /* Same as main bg? */
+  background-color: #1a202c;
+
+  /* Same as main bg? */
 }
 
-
-
 body.dark-mode .bg-light {
-    background-color: #2d3748;
+  background-color: #2d3748;
 }
 
 /* Revert cards to be elevated */
 body.dark-mode .card,
 body.dark-mode .testimonial-card,
 body.dark-mode .feedback-form-wrapper {
-    background-color: #4a5568;
-    /* Lighter than everything */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background-color: #4a5568;
+
+  /* Lighter than everything */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 body.dark-mode .feedback-form-wrapper {
-    border-color: #4a5568;
+  border-color: #4a5568;
 }
 
 /* Input Fields in Dark Mode */
 body.dark-mode input,
 body.dark-mode textarea {
-    background-color: #2d3748;
-    color: #f7fafc;
-    border-color: #4a5568;
+  background-color: #2d3748;
+  color: #f7fafc;
+  border-color: #4a5568;
 }
 
 body.dark-mode input:focus,
 body.dark-mode textarea:focus {
-    border-color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 /* --- Cards (Subjects & Projects) --- */
 .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
 .card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
+  background: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  text-align: center;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 20px;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
 }
 
 .card h3 {
-    margin-bottom: 15px;
-    font-family: var(--font-heading);
+  margin-bottom: 15px;
+  font-family: var(--font-heading);
 }
 
 .card p {
-    color: var(--text-light);
-    font-size: 0.95rem;
+  color: var(--text-light);
+  font-size: 0.95rem;
 }
 
 /* --- Skills Tags --- */
 .skills-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 
 .skill-tag {
-    background: var(--bg-light);
-    color: var(--secondary-color);
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border: 1px solid #e2e8f0;
+  background: var(--bg-light);
+  color: var(--secondary-color);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid #e2e8f0;
 }
 
 /* --- Testimonials Section --- */
 .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
 }
 
 .testimonial-card {
-    background: var(--bg-light);
-    padding: 30px;
-    border-radius: 10px;
-    position: relative;
-    border-left: 5px solid var(--primary-color);
+  background: var(--bg-light);
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  border-left: 5px solid var(--primary-color);
 }
 
 .quote-icon {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    opacity: 0.3;
-    margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  opacity: 0.3;
+  margin-bottom: 15px;
 }
 
 .testimonial-text {
-    font-style: italic;
-    color: var(--text-dark);
-    margin-bottom: 20px;
+  font-style: italic;
+  color: var(--text-dark);
+  margin-bottom: 20px;
 }
 
 .testimonial-author h4 {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    color: var(--primary-color);
-    margin-bottom: 2px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin-bottom: 2px;
 }
 
 .testimonial-author span {
-    font-size: 0.85rem;
-    color: var(--text-light);
+  font-size: 0.85rem;
+  color: var(--text-light);
 }
 
 /* --- Feedback Form --- */
 .feedback-form-wrapper {
-    max-width: 600px;
-    margin: 0 auto;
-    background: var(--white);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    border: 1px solid #eee;
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  border: 1px solid #eee;
 }
 
 .feedback-form-wrapper h3 {
-    font-family: var(--font-heading);
-    color: var(--secondary-color);
-    margin-bottom: 10px;
+  font-family: var(--font-heading);
+  color: var(--secondary-color);
+  margin-bottom: 10px;
 }
 
 .feedback-form-wrapper p {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-bottom: 30px;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 30px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .form-group textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 /* --- Star Rating (New) --- */
 .rating-group {
-    text-align: left;
-    margin-bottom: 20px;
+  text-align: left;
+  margin-bottom: 20px;
 }
 
 .rating-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--text-dark);
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-dark);
 }
 
 .star-rating {
-    display: flex;
-    gap: 10px;
-    font-size: 1.5rem;
-    cursor: pointer;
+  display: flex;
+  gap: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .star-rating i {
-    color: #e2e8f0;
-    /* Default empty color */
-    transition: color 0.2s ease;
+  color: #e2e8f0;
+
+  /* Default empty color */
+  transition: color 0.2s ease;
 }
 
 .star-rating i.active,
 .star-rating i.hover {
-    color: #f6ad55;
-    /* Match accent color but verify variable usage */
-    color: var(--accent-color);
+  color: #f6ad55;
+
+  /* Match accent color but verify variable usage */
+  color: var(--accent-color);
 }
 
 .testimonial-rating {
-    margin-bottom: 10px;
-    color: var(--accent-color);
-    font-size: 1rem;
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  font-size: 1rem;
 }
 
 /* --- Contact --- */
 .contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .info-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
 }
 
 .info-item i {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .contact-subtitle {
-    text-align: center;
-    color: var(--text-light);
+  text-align: center;
+  color: var(--text-light);
 }
 
 /* --- Footer --- */
 footer {
-    background-color: var(--text-dark);
-    color: var(--white);
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto;
+  background-color: var(--text-dark);
+  color: var(--white);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
 }
 
 /* --- WhatsApp Button --- */
 .whatsapp-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: var(--success);
-    color: var(--white);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 35px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 2000;
-    transition: transform 0.3s ease;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--success);
+  color: var(--white);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+  transition: transform 0.3s ease;
 }
 
 .whatsapp-btn:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* --- Mobile Responsive --- */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-        z-index: 1001;
-    }
+@media (width <= 768px) {
+  .menu-toggle {
+    display: block;
+    z-index: 1001;
+  }
 
-    .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
 
-    .menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
 
-    .menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 0;
-        /* Cover entire screen including behind notification area if possible, but 0 is good */
-        gap: 0;
-        flex-direction: column;
-        background-color: var(--white);
-        width: 100%;
-        height: 100vh;
-        /* Full viewport height */
-        text-align: center;
-        transition: 0.3s;
-        padding-top: 80px;
-        /* Space for the X button */
-        justify-content: flex-start;
-    }
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 0;
 
-    .nav-menu.active {
-        left: 0;
-    }
+    /* Cover entire screen including behind notification area if possible, but 0 is good */
+    gap: 0;
+    flex-direction: column;
+    background-color: var(--white);
+    width: 100%;
+    height: 100vh;
 
-    .nav-menu li {
-        margin: 20px 0;
-    }
+    /* Full viewport height */
+    text-align: center;
+    transition: 0.3s;
+    padding-top: 80px;
 
-    .nav-menu.active {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
+    /* Space for the X button */
+    justify-content: flex-start;
+  }
 
-    .hero h1 {
-        font-size: 2rem;
-    }
+  .nav-menu.active {
+    left: 0;
+  }
 
-    .section {
-        padding: 50px 0;
-    }
+  .nav-menu li {
+    margin: 20px 0;
+  }
+
+  .nav-menu.active {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
 }
