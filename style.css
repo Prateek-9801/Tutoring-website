@@ -233,50 +233,15 @@ body.dark-mode .navbar {
 body.dark-mode .card,
 body.dark-mode .testimonial-card,
 body.dark-mode .feedback-form-wrapper {
-  background-color: var(--white);
-
-  /* Cards pop against bg-light (which is 2d3748) or vice versa?
-                                       Actually standard logic:
-                                       Body bg = white (#1a202c)
-                                       Bg-light sect = bg-light (#2d3748)
-                                       Card in Bg-light sect = white (#1a202c)? No that would blend.
-                                       Let's invert logic:
-                                       Body (white) -> Dark (#1a202c)
-                                       Section (bg-light) -> Lighter Dark (#2d3748)
-                                       Card (white) -> Lighter Dark (#2d3748) IF on Body, or Darkest on Lighter?
-
-                                       Let's stick to simple:
-                                       Cards should be 'elevated' (lighter in dark mode usually).
-                                       var(--white) is now #1a202c (Dark).
-                                       var(--bg-light) is now #2d3748 (Lighter Dark).
-
-                                       Standard Card: background: var(--white) -> #1a202c.
-                                       Projects Section: background: var(--bg-light) -> #2d3748.
-                                       Card in Projects: #1a202c on #2d3748. (Dark on Light-Dark). This is OK but maybe inverted preference.
-                                       Let's override specifically for better depth.
-                                     */
-  background-color: #2d3748;
-
-  /* Make cards lighter than main bg */
+  /* Cards should be 'elevated' (lighter in dark mode usually).
+     Make cards lighter than main bg */
+  background-color: #4a5568;
 }
 
 body.dark-mode .bg-light {
   /* Make "light" sections darker than main bg for contrast, or keep as var?
                                   Let's use a specific dark tone */
-  background-color: #1a202c;
-
-  /* Same as main bg? */
-}
-
-body.dark-mode .bg-light {
   background-color: #2d3748;
-}
-
-/* Revert cards to be elevated */
-body.dark-mode .card,
-body.dark-mode .testimonial-card,
-body.dark-mode .feedback-form-wrapper {
-  background-color: #4a5568;
 
   /* Lighter than everything */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -586,14 +551,11 @@ footer {
 
   .nav-menu.active {
     left: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
   .nav-menu li {
     margin: 20px 0;
-  }
-
-  .nav-menu.active {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
   .hero h1 {
